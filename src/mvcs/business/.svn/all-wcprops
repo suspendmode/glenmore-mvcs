@@ -1,0 +1,17 @@
+K 25
+svn:wc:ra_dav:version-url
+V 39
+/svn/!svn/ver/63/trunk/src/mvcs/service
+END
+BusinessObject.as
+K 25
+svn:wc:ra_dav:version-url
+V 57
+/svn/!svn/ver/63/trunk/src/mvcs/service/BusinessObject.as
+END
+ServiceLocator.as
+K 25
+svn:wc:ra_dav:version-url
+V 57
+/svn/!svn/ver/63/trunk/src/mvcs/service/ServiceLocator.as
+END

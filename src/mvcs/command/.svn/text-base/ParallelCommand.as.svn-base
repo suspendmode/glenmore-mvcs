@@ -1,0 +1,66 @@
+/**
+ * Copyright (C) Piotr Kucharski
+ * email: suspendmode@gmail.com
+ *
+ * All rights reserved. Any use, copying, modification, distribution and selling
+ * of this software and it's documentation for any purposes without authors' written
+ * permission is hereby prohibited.
+ */
+package patterns.behavioral.command {
+  import util.CommandUtil;
+  
+  /**
+   *
+   * Sequence command executing commands in parallel
+   *
+   * @author piku
+   *
+   */
+  public class ParallelCommand extends AbstractGroupCommand {
+    
+    /**
+     *
+     * @private
+     *
+     */
+    override protected function executeCommands() : void {
+      executeCommandsInParallel();
+    }
+    
+    /**
+     *
+     *
+     */
+    private function executeCommandsInParallel() : void {
+      while (commands.length) {
+        commandsToExecute++;
+        //create
+        var command : ICommand = commands.shift();
+        var parameters : Object = commandParameters[command];
+        delete commandParameters[command];
+        //execute
+        CommandUtil.executeCommandInstance(command, commandExecuted,
+          commandError, parameters);
+      }
+    }
+    
+    ///////////////////////////////////////////////////////////////////////
+    
+    /**
+     *
+     * adds commands wrapped to a parallel command
+     *
+     * @param commandGenerators Array array of command generators
+     *
+     */
+    protected function addParallelCommand(... commandGenerators : Array) : void {
+      var parallelCommand : ParallelCommand = new ParallelCommand();
+      
+      for each (var commandGenerator : Class in commandGenerators) {
+        parallelCommand.add(commandGenerator);
+      }
+      commands.push(parallelCommand);
+      commandParameters[parallelCommand] = null;
+    }
+  }
+}

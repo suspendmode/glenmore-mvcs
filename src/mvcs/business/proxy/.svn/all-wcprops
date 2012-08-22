@@ -1,0 +1,23 @@
+K 25
+svn:wc:ra_dav:version-url
+V 45
+/svn/!svn/ver/63/trunk/src/mvcs/service/proxy
+END
+BusinessProxy.as
+K 25
+svn:wc:ra_dav:version-url
+V 62
+/svn/!svn/ver/63/trunk/src/mvcs/service/proxy/BusinessProxy.as
+END
+SocketBusinessProxy.as
+K 25
+svn:wc:ra_dav:version-url
+V 68
+/svn/!svn/ver/63/trunk/src/mvcs/service/proxy/SocketBusinessProxy.as
+END
+XMLSocketBusinessProxy.as
+K 25
+svn:wc:ra_dav:version-url
+V 71
+/svn/!svn/ver/63/trunk/src/mvcs/service/proxy/XMLSocketBusinessProxy.as
+END

@@ -1,0 +1,140 @@
+/**
+ * Copyright (C) Piotr Kucharski
+ * email: suspendmode@gmail.com
+ *
+ * All rights reserved. Any use, copying, modification, distribution and selling
+ * of this software and it's documentation for any purposes without authors' written
+ * permission is hereby prohibited.
+ */
+package mvcs.view {
+  import flash.display.MovieClip;
+  import flash.events.ErrorEvent;
+  import flash.events.Event;
+  import flash.utils.setTimeout;
+  
+  import lifecycle.ILifeCycle;
+  import lifecycle.LifeCycleEvent;
+  
+  /**
+   *
+   */
+  [Event(name="initialize", type="lifecycle.LifeCycleEvent")]
+  
+  /**
+   *
+   */
+  [Event(name="initialized", type="lifecycle.LifeCycleEvent")]
+  
+  /**
+   *
+   */
+  [Event(name="dispose", type="lifecycle.LifeCycleEvent")]
+  
+  /**
+   *
+   */
+  [Event(name="disposed", type="lifecycle.LifeCycleEvent")]
+  
+  /**
+   *
+   */
+  [Event(name="error", type="flash.events.ErrorEvent")]
+  
+  /**
+   *
+   * @author piku
+   *
+   */
+  public class ExtendedMovieClip extends MovieClip implements ILifeCycle {
+    
+    /**
+     *
+     *
+     */
+    public function ExtendedMovieClip() {
+      super();
+      create();
+    }
+    
+    /**
+     *
+     *
+     */
+    protected function create() : void {
+      addEventListener(Event.ADDED_TO_STAGE, onAddedToStage);
+      addEventListener(Event.REMOVED_FROM_STAGE, onRemovedFromStage);
+    }
+    
+    /**
+     *
+     * @param event
+     *
+     */
+    private function onAddedToStage(event : Event) : void {
+      initialize();
+    }
+    
+    /**
+     *
+     * @param event
+     *
+     */
+    private function onRemovedFromStage(event : Event) : void {
+      dispose();
+    }
+    
+    // ILifeCycle impl
+    
+    // ILifeCycle impl
+    
+    /**
+     *
+     *
+     */
+    public function initialize() : void {
+      dispatchEvent(new LifeCycleEvent(LifeCycleEvent.INITIALIZE));
+      initialized();
+    }
+    
+    /**
+     *
+     *
+     */
+    public function dispose() : void {
+      dispatchEvent(new LifeCycleEvent(LifeCycleEvent.DISPOSE));
+      disposed();
+    }
+    
+    /**
+     *
+     * @param info
+     *
+     */
+    protected function error(info : Object = null) : void {
+      if (!info) {
+        dispatchEvent(new ErrorEvent(ErrorEvent.ERROR, false, false));
+      } else {
+        dispatchEvent(new ErrorEvent(ErrorEvent.ERROR, false, false,
+          info.toString()));
+      }
+    }
+    
+    /**
+     *
+     * @param info
+     *
+     */
+    protected function initialized(info : Object = null) : void {
+      dispatchEvent(new LifeCycleEvent(LifeCycleEvent.INITIALIZED, info));
+    }
+    
+    /**
+     *
+     * @param info
+     *
+     */
+    protected function disposed(info : Object = null) : void {
+      dispatchEvent(new LifeCycleEvent(LifeCycleEvent.DISPOSED, info));
+    }
+  }
+}

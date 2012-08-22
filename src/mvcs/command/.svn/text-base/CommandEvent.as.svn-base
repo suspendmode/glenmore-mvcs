@@ -1,0 +1,47 @@
+/**
+ * Copyright (C) Piotr Kucharski
+ * email: suspendmode@gmail.com
+ *
+ * All rights reserved. Any use, copying, modification, distribution and selling
+ * of this software and it's documentation for any purposes without authors' written
+ * permission is hereby prohibited.
+ */
+package patterns.behavioral.command {
+  import flash.events.Event;
+  
+  /**
+   * Event dispatched by pl.hypermedia.projects.source.invitator.command.Command
+   *
+   * @author piku
+   *
+   */
+  public class CommandEvent extends Event {
+    
+    /**
+     * Dispatched when command is complete
+     */
+    public static const COMPLETE : String = "complete";
+    
+    /**
+     * Dispatched when command has error
+     */
+    public static const ERROR : String = "error";
+    
+    /**
+     * parameters object
+     */
+    public var parameters : Object;
+    
+    /**
+     * Constructor
+     *
+     * @param type String Event type
+     * @param parameters Object related data object
+     *
+     */
+    public function CommandEvent(type : String, parameters : Object = null) {
+      super(type);
+      this.parameters = parameters;
+    }
+  }
+}

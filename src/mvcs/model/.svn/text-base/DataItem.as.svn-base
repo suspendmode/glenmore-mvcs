@@ -1,0 +1,56 @@
+/**
+ * Copyright (C) Piotr Kucharski
+ * email: suspendmode@gmail.com
+ *
+ * All rights reserved. Any use, copying, modification, distribution and selling
+ * of this software and it's documentation for any purposes without authors' written
+ * permission is hereby prohibited.
+ */
+package mvcs.model {
+  import flash.events.EventDispatcher;
+  
+  import logging.ILogger;
+  import logging.Log;
+    
+  /**
+   *
+   * @author piku
+   *
+   */
+  public class DataItem extends ValueObject {
+    
+    /**
+     *
+     */
+    private static var log : ILogger = Log.getLogger(DataItem);
+
+    /**
+     *
+     */
+    public var label : String;
+    
+    /**
+     *
+     */
+    public var data : Object;
+    
+    /**
+     *
+     */
+    public var index : int = -1;
+    
+    /**
+     *
+     * @param label
+     * @param data
+     * @param index
+     *
+     */
+    public function DataItem(label : String = null, data : Object = null, index : int =
+      -1) {
+      this.label = label;
+      this.data = data;
+      this.index = index;
+    }
+  }
+}

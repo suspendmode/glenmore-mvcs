@@ -1,0 +1,53 @@
+K 25
+svn:wc:ra_dav:version-url
+V 37
+/svn/!svn/ver/63/trunk/src/mvcs/model
+END
+EditorDataItem.as
+K 25
+svn:wc:ra_dav:version-url
+V 55
+/svn/!svn/ver/65/trunk/src/mvcs/model/EditorDataItem.as
+END
+ValueObject.as
+K 25
+svn:wc:ra_dav:version-url
+V 52
+/svn/!svn/ver/63/trunk/src/mvcs/model/ValueObject.as
+END
+AbstractModel.as
+K 25
+svn:wc:ra_dav:version-url
+V 54
+/svn/!svn/ver/63/trunk/src/mvcs/model/AbstractModel.as
+END
+ITransferObject.as
+K 25
+svn:wc:ra_dav:version-url
+V 56
+/svn/!svn/ver/65/trunk/src/mvcs/model/ITransferObject.as
+END
+IEditableValueObject.as
+K 25
+svn:wc:ra_dav:version-url
+V 61
+/svn/!svn/ver/63/trunk/src/mvcs/model/IEditableValueObject.as
+END
+DataItem.as
+K 25
+svn:wc:ra_dav:version-url
+V 49
+/svn/!svn/ver/65/trunk/src/mvcs/model/DataItem.as
+END
+TransferObject.as
+K 25
+svn:wc:ra_dav:version-url
+V 55
+/svn/!svn/ver/65/trunk/src/mvcs/model/TransferObject.as
+END
+Entity.as
+K 25
+svn:wc:ra_dav:version-url
+V 47
+/svn/!svn/ver/63/trunk/src/mvcs/model/Entity.as
+END

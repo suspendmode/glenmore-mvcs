@@ -1,0 +1,39 @@
+/**
+ * Copyright (C) Grape Software 2009
+ *
+ * All rights reserved. Any use, copying, modification, distribution and selling
+ * of this software and it's documentation for any purposes without authors' written
+ * permission is hereby prohibited.
+ */
+package mvcs.controller {
+  import logging.ILogger;
+  import logging.Log;
+  
+  
+  /**
+   *
+   * @author piq
+   *
+   */
+  public class SequenceController extends Controller  {
+    
+    /**
+     * 
+     */
+    private static var log:ILogger = Log.getLogger(SequenceController);
+    
+    /**
+     * 
+     * 
+     */
+    override protected function create():void {
+      
+      /*if (!commandsGroupTask) {
+        commandsGroupTask = new SequenceTask();
+      }*/
+      super.create();
+      
+      //createCommands();
+    }        
+  }
+}

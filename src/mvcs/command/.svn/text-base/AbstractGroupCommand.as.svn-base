@@ -1,0 +1,101 @@
+/**
+ * Copyright (C) Piotr Kucharski
+ * email: suspendmode@gmail.com
+ *
+ * All rights reserved. Any use, copying, modification, distribution and selling
+ * of this software and it's documentation for any purposes without authors' written
+ * permission is hereby prohibited.
+ */
+package patterns.behavioral.command {
+  import flash.utils.Dictionary;
+  
+  /**
+   *
+   * @author Peter
+   *
+   */
+  public class AbstractGroupCommand extends AbstractAsyncCommand implements IGroupCommand {
+    
+    /**
+     *
+     * commands list
+     *
+     * @private
+     *
+     */
+    protected var commands : Array = [];
+    
+    /**
+     *
+     * commands parameters
+     *
+     * @private
+     *
+     */
+    protected var commandParameters : Dictionary = new Dictionary();
+    
+    /**
+     *
+     * Adds command to sequence
+     *
+     * @param commandGenerator Class ICommand class
+     * @param parameters optional parameters for command
+     * @return
+     *
+     */
+    final public function add(commandGenerator : Class,
+      parameters : Object = null) : void {
+      var command : ICommand = new commandGenerator();
+      this.commands.push(command);
+      commandParameters[command] = parameters;
+    }
+    
+    /**
+     *
+     * @inheritDoc
+     *
+     */
+    final override public function execute(parameters : Object = null) : void {
+      createCommands();
+      executeCommands();
+    }
+    
+    /**
+     *
+     * @private
+     *
+     */
+    protected var commandsToExecute : int = 0;
+    
+    /**
+     *
+     * create commands for this group command
+     *
+     */
+    protected function createCommands() : void {
+      //abstract
+    }
+    
+    /**
+     *
+     * @private
+     *
+     */
+    protected function executeCommands() : void {
+      //abstract
+    }
+    
+    /**
+     *
+     * @private
+     *
+     */
+    final protected function commandExecuted() : void {
+      if (commandsToExecute) {
+        commandsToExecute--;
+      } else {
+        commandComplete();
+      }
+    }
+  }
+}

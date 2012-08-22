@@ -1,0 +1,34 @@
+/**
+ *
+ */
+package mvcs.service.delegate {
+  import flash.events.IEventDispatcher;
+  
+  import logging.ILogger;
+  import logging.Log;
+  
+  /**
+   *
+   * @author piku
+   *
+   */
+  public class SequentialBusinessDelegate extends BusinessDelegate {
+    
+    /**
+     *
+     */
+    private static var log : ILogger = Log.getLogger(SequentialBusinessDelegate);
+    
+    /**
+     *
+     * @param id
+     * @param service
+     * @param eventDispatcher
+     *
+     */
+    public function SequentialBusinessDelegate(id : String = null,
+      service : Object = null, eventDispatcher : IEventDispatcher = null) {
+      /*super(id, service, eventDispatcher);*/
+    }
+  }
+}

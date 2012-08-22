@@ -1,0 +1,54 @@
+/**
+ *
+ */
+package mvcs.service {
+  import flash.events.Event;
+  
+  import lifecycle.LifeCycleObject;
+  
+  import logging.ILogger;
+  import logging.Log;
+  
+  /**
+   *
+   */
+  [Event(name="serviceChange", type="flash.events.Event")]
+  
+  /**
+   *
+   * @author Peter
+   *
+   */
+  public class BusinessObject extends LifeCycleObject {
+    
+    /**
+     * 
+     */
+    private static var logger: ILogger = Log.getLogger(BusinessObject);
+    
+    /**
+     *
+     */
+    private var _service : Object;
+    
+    /**
+     * @private
+     */
+    public function set service(value : Object) : void {
+      if (_service != value) {
+        _service = value;
+        logger.info("{0} service changed to: {1}", this, value);
+        dispatchEvent(new Event("serviceChange"));
+      }
+    }
+    
+    /**
+     *
+     */
+    public function get service() : Object {
+      return _service;
+    }
+  
+  
+  }
+}

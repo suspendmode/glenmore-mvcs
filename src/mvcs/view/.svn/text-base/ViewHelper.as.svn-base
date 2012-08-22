@@ -1,0 +1,118 @@
+/**
+ * Copyright (C) Piotr Kucharski
+ * email: suspendmode@gmail.com
+ *
+ * All rights reserved. Any use, copying, modification, distribution and selling
+ * of this software and it's documentation for any purposes without authors' written
+ * permission is hereby prohibited.
+ */
+package mvcs.view {
+  import flash.display.DisplayObject;
+  import flash.events.Event;
+  
+  import lifecycle.LifeCycleObject;
+  
+  /**
+   *
+   */
+  [Event(name="viewNameChange", type="flash.events.Event")]
+  
+  /**
+   *
+   */
+  [Event(name="viewChange", type="flash.events.Event")]
+  
+  /**
+   *
+   */
+  [Event(name="viewDescriptorChange", type="flash.events.Event")]
+  
+  /**
+   *
+   * @author Peter
+   *
+   */
+  public class ViewHelper extends LifeCycleObject implements IViewHelper {
+    
+    // IViewHelper impl
+    
+    /**
+     *
+     */
+    private var _view : DisplayObject;
+    
+    /**
+     *
+     * @return
+     *
+     */
+    public function get view() : DisplayObject {
+      return _view;
+    }
+    
+    /**
+     *
+     * @param value
+     *
+     */
+    public function set view(value : DisplayObject) : void {
+      if (_view != value) {
+        _view = value;
+        dispatchEvent(new Event("viewChange"));
+      }
+    }
+    
+    
+    /**
+     *
+     */
+    private var _viewName : String;
+    
+    /**
+     *
+     * @return
+     *
+     */
+    public function get viewName() : String {
+      return _viewName;
+    }
+    
+    /**
+     *
+     * @param value
+     *
+     */
+    public function set viewName(value : String) : void {
+      if (_viewName != value) {
+        _viewName = value;
+        dispatchEvent(new Event("viewNameChange"));
+      }
+    }
+    
+    /**
+     *
+     */
+    private var _viewDescriptor : IViewDescriptor;
+    
+    /**
+     *
+     * @return
+     *
+     */
+    public function get viewDescriptor() : IViewDescriptor {
+      return _viewDescriptor;
+    }
+    
+    /**
+     *
+     * @param value
+     *
+     */
+    public function set viewDescriptor(value : IViewDescriptor) : void {
+      if (_viewDescriptor != value) {
+        _viewDescriptor = value;
+        dispatchEvent(new Event("viewDescriptorChange"));
+      }
+    }
+  }
+}

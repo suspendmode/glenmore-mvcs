@@ -1,0 +1,105 @@
+/**
+ * Copyright (C) Piotr Kucharski
+ * email: suspendmode@gmail.com
+ *
+ * All rights reserved. Any use, copying, modification, distribution and selling
+ * of this software and it's documentation for any purposes without authors' written
+ * permission is hereby prohibited.
+ */
+package patterns.behavioral.command {
+  import flash.utils.setTimeout;
+  
+  import logging.ILogger;
+  import logging.Log;
+  
+  import patterns.concurrency.event.CompoundEventDispatcher;
+  
+  import util.CommandUtil;
+  
+  /**
+   * complete event
+   */
+  [Event(name="complete", type="pl.hypermedia.projects.source.mvc.command.CommandEvent")]
+  
+  /**
+   * error event
+   */
+  [Event(name="error", type="pl.hypermedia.projects.source.mvc.command.CommandEvent")]
+  
+  /**
+   *
+   * @author piku
+   *
+   */
+  public class AbstractAsyncCommand extends CompoundEventDispatcher implements IAsyncCommand {
+    
+    /**
+     * 
+     */
+    private static var log:ILogger = Log.getLogger(AbstractAsyncCommand);    
+    
+    // ICommand impl
+    
+    /**
+     *
+     */
+    protected var parameters : Object;
+    
+    
+    /**
+     *
+     * execute command
+     *
+     * @param parameters Object optional parameters
+     *
+     */
+    public function execute(parameters : Object = null) : void {
+      //abstarct
+      this.parameters = parameters;
+      log.info("{0} execute command {1}", this, parameters);
+    }
+
+    
+    // async impl    
+    
+    /**
+     *
+     * command complete
+     *
+     */
+    protected function commandComplete(data : Object = null) : void {
+      log.info("{0} commandComplete", this);
+      setTimeout(dispatchEvent, 1,
+        new CommandEvent(CommandEvent.COMPLETE, data));
+    }
+    
+    /**
+     * command error
+     *
+     * @param text
+     *
+     */
+    protected function commandError(info : Object = null) : void {
+      log.info("{0} commandError", this);
+      setTimeout(dispatchEvent, 10, new CommandEvent(CommandEvent.ERROR, info));
+    }
+    
+    ///////////////////////////////////////////////////////////////////////////////////
+    
+    /**
+     *
+     * @param commandGenerator
+     * @param completeListener
+     * @param errorListener
+     * @param parameters
+     * @return
+     *
+     */
+    protected function executeCommand(commandGenerator : Class,
+      completeListener : Function = null, errorListener : Function = null,
+      parameters : Object = null) : ICommand {
+      return CommandUtil.executeCommand(commandGenerator, completeListener,
+        errorListener, parameters);
+    }
+  }
+}

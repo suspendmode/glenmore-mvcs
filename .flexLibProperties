@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<flexLibProperties includeAllClasses="true" useMultiPlatformConfig="false" version="3">
+  <includeClasses>
+    <classEntry path="mvcs.command.async.ChainCommand"/>
+    <classEntry path="mvcs.business.operation.MockOperation"/>
+    <classEntry path="mvcs.business.async.NetCompositeResponder"/>
+    <classEntry path="mvcs.business.operation.OperationEvent"/>
+    <classEntry path="mvcs.service.service.ServiceEvent"/>
+    <classEntry path="mvcs.command.async.ParallelCommand"/>
+    <classEntry path="mvcs.business.proxy.SocketBusinessProxy"/>
+    <classEntry path="mvcs.model.TransferObject"/>
+    <classEntry path="mvcs.view.ViewMediator"/>
+    <classEntry path="mvcs.command.async.AsyncCommand"/>
+    <classEntry path="mvcs.controller.SequenceController"/>
+    <classEntry path="mvcs.business.async.Responder"/>
+    <classEntry path="mvcs.business.async.NetResponder"/>
+    <classEntry path="mvcs.command.NullCommand"/>
+    <classEntry path="mvcs.business.operation.LocalSharedObjectOperation"/>
+    <classEntry path="mvcs.business.async.CompositeResponder"/>
+    <classEntry path="mvcs.view.ViewEvent"/>
+    <classEntry path="mvcs.business.delegate.LocalSharedObjectDelegate"/>
+    <classEntry path="mvcs.interfaces.IAsyncCommand"/>
+    <classEntry path="mvcs.model.Model"/>
+    <classEntry path="mvcs.business.delegate.URLLoaderDelegate"/>
+    <classEntry path="mvcs.interfaces.IBusinessDelegate"/>
+    <classEntry path="mvcs.view.ViewDescriptor"/>
+    <classEntry path="mvcs.service.service.LocalSharedObjectService"/>
+    <classEntry path="mvcs.command.async.SequenceCommand"/>
+    <classEntry path="mvcs.command.Command"/>
+    <classEntry path="mvcs.model.DataItem"/>
+    <classEntry path="mvcs.interfaces.IGroupCommand"/>
+    <classEntry path="mvcs.business.delegate.NetConnectionBusinessDelegate"/>
+    <classEntry path="mvcs.model.ProxyObject"/>
+    <classEntry path="mvcs.business.listener.BusinessPushListener"/>
+    <classEntry path="mvcs.interfaces.ICompositeResponder"/>
+    <classEntry path="mvcs.business.delegate.BusinessDelegate"/>
+    <classEntry path="mvcs.interfaces.IEditableValueObject"/>
+    <classEntry path="mvcs.interfaces.ICommand"/>
+    <classEntry path="mvcs.interfaces.IViewMediator"/>
+    <classEntry path="mvcs.business.proxy.BusinessProxy"/>
+    <classEntry path="mvcs.controller.Controller"/>
+    <classEntry path="mvcs.model.EditorDataItem"/>
+    <classEntry path="mvcs.interfaces.IBusinessListener"/>
+    <classEntry path="mvcs.model.Entity"/>
+    <classEntry path="mvcs.command.CommandInfo"/>
+    <classEntry path="mvcs.interfaces.IViewHelper"/>
+    <classEntry path="mvcs.business.proxy.XMLSocketBusinessProxy"/>
+    <classEntry path="mvcs.model.ValueObject"/>
+    <classEntry path="mvcs.command.async.GroupCommand"/>
+    <classEntry path="mvcs.interfaces.IView"/>
+    <classEntry path="mvcs.business.delegate.MockBusinessDelegate"/>
+    <classEntry path="util.CommandUtil"/>
+    <classEntry path="mvcs.interfaces.IController"/>
+    <classEntry path="mvcs.interfaces.IModel"/>
+    <classEntry path="mvcs.model.ModelEvent"/>
+    <classEntry path="mvcs.test.controller.ControllerTest"/>
+    <classEntry path="mvcs.test.controller.SequenceControllerTest"/>
+    <classEntry path="mvcs.command.async.MacroCommand"/>
+    <classEntry path="mvcs.command.async.CommandNotification"/>
+    <classEntry path="mvcs.view.ViewHelper"/>
+  </includeClasses>
+  <includeResources/>
+  <namespaceManifests/>
+</flexLibProperties>

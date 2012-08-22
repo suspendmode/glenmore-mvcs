@@ -1,0 +1,36 @@
+/**
+ * Copyright (C) Grape Software 2009
+ *
+ * All rights reserved. Any use, copying, modification, distribution and selling
+ * of this software and it's documentation for any purposes without authors' written
+ * permission is hereby prohibited.
+ */
+package mvcs.service.delegate {
+  import logging.ILogger;
+  import logging.Log;
+  
+  
+  /**
+   *
+   * @author Peter
+   *
+   */
+  public class MockBusinessDelegate extends BusinessDelegate {
+    
+    /**
+     *
+     */
+    private static var log : logging.ILogger = Log.getLogger(MockBusinessDelegate);
+    
+    /**
+     *
+     * @param name
+     * @return
+     *
+     */
+    /*override public function getOperation(name : String) : * {
+      var operation : MockOperation = new MockOperation(name);
+      return operation;
+    }*/
+  }
+}

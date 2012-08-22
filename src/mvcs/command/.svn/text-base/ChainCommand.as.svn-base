@@ -1,0 +1,58 @@
+/**
+ * Copyright (C) Piotr Kucharski
+ * email: suspendmode@gmail.com
+ *
+ * All rights reserved. Any use, copying, modification, distribution and selling
+ * of this software and it's documentation for any purposes without authors' written
+ * permission is hereby prohibited.
+ */
+package patterns.behavioral.command {
+  import flash.utils.setTimeout;
+  
+  import util.CommandUtil;
+  
+  /**
+   *
+   * @author Peter
+   *
+   */
+  public class ChainCommand extends SequenceCommand {
+    
+    /**
+     *
+     *
+     */
+    override protected function executeCommands() : void {
+      executeNextCommand();
+    }
+    
+    /**
+     *
+     * @private
+     *
+     */
+    private function executeNextCommand() : void {
+      if (commands.length) {
+        //create
+        var command : ICommand = commands.shift();
+        var parameters : Object = commandParameters[command];
+        delete commandParameters[command];
+        //execute
+        CommandUtil.executeCommandInstance(command, onCommandExecuted,
+          commandExecuted, parameters);
+      } else {
+        commandComplete();
+      }
+    }
+    
+    /**
+     *
+     * @private
+     *
+     */
+    private function onCommandExecuted() : void {
+      commandExecuted();
+      setTimeout(executeNextCommand, 1);
+    }
+  }
+}

@@ -1,0 +1,61 @@
+/**
+ * Copyright (C) Piotr Kucharski
+ * email: suspendmode@gmail.com
+ *
+ * All rights reserved. Any use, copying, modification, distribution and selling
+ * of this software and it's documentation for any purposes without authors' written
+ * permission is hereby prohibited.
+ */
+package mvcs.service {
+  import flash.utils.Dictionary;
+  
+  import lifecycle.LifeCycleContainer;
+  
+  /**
+   * Service locator is map of business objects
+   * @author piku
+   *
+   */
+  public class ServiceLocator extends LifeCycleContainer {
+    
+    /**
+     * singleton
+     * @private
+     */
+    private static var instance : ServiceLocator;
+    
+    /**
+     *
+     * @param lock Lock security practice for singleton
+     *
+     */
+    public function ServiceLocator(lock : Lock) {
+      if (!instance) {
+        instance = this;
+      }
+    }
+    
+    /**
+     *
+     * Singleton pattern
+     *
+     * @return singleton instance
+     *
+     */
+    public static function getInstance() : ServiceLocator {
+      if (!instance) {
+        new ServiceLocator(new Lock());
+      }
+      return instance;
+    }
+  }
+}
+
+/**
+ *
+ * @author Peter
+ *
+ */
+class Lock {
+  // internal singleton lock
+}

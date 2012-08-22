@@ -1,0 +1,56 @@
+/**
+ * Copyright (C) Piotr Kucharski
+ * email: suspendmode@gmail.com
+ *
+ * All rights reserved. Any use, copying, modification, distribution and selling
+ * of this software and it's documentation for any purposes without authors' written
+ * permission is hereby prohibited.
+ */
+package mvcs.model {
+  import flash.events.Event;
+  
+  import logging.ILogger;
+  import logging.Log;
+  
+  /**
+   *
+   * @author piku
+   *
+   */
+  public class EditorDataItem extends DataItem implements IEditableValueObject {
+    
+    /**
+     *
+     */
+    private static var log : ILogger = Log.getLogger(EditorDataItem);
+    
+    // IEditableValueObject impl
+    
+    /**
+     *
+     */
+    private var _editing : Boolean = false;
+    
+    [Transient]
+    /**
+     *
+     * @param value
+     *
+     */
+    public function set editing(value : Boolean) : void {
+      if (_editing != value) {
+        _editing = value;
+        dispatchEvent(new Event("editingChange"));
+      }
+    }
+    
+    /**
+     *
+     * @return
+     *
+     */
+    public function get editing() : Boolean {
+      return _editing;
+    }
+  }
+}

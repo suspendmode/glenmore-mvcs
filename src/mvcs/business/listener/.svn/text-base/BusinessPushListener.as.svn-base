@@ -1,0 +1,25 @@
+/**
+ *
+ */
+package mvcs.service.listener {
+  import flash.errors.IllegalOperationError;
+  import mvcs.service.BusinessObject;
+  
+  /**
+   *
+   * @author Peter
+   *
+   */
+  public class BusinessPushListener extends BusinessObject {
+    
+    /**
+     *
+     * @param parameters
+     * @return
+     *
+     */
+    public function onData(parameters : Object) : void {
+      throw new IllegalOperationError("abstract method");
+    }
+  }
+}

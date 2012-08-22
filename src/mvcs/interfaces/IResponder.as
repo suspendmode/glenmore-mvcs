@@ -1,0 +1,39 @@
+/**
+ * Copyright (C) Piotr Kucharski
+ * email: suspendmode@gmail.com
+ *
+ * All rights reserved. Any use, copying, modification, distribution and selling
+ * of this software and it's documentation for any purposes without authors' written
+ * permission is hereby prohibited.
+ */
+package mvcs.interfaces {
+  
+  /**
+   *
+   * @author piku
+   *
+   */
+  public interface IResponder {
+    
+    /**
+     *
+     * @param data
+     *
+     */
+    function onComplete(data : Object) : void;
+    
+    /**
+     *
+     * @param info
+     *
+     */
+    function onError(info : Object) : void;
+	
+	/**
+	 *
+	 * @param info
+	 *
+	 */
+	function onStatus(info : Object) : void;
+  }
+}

@@ -1,0 +1,149 @@
+/**
+ * Copyright (C) Piotr Kucharski
+ * email: suspendmode@gmail.com
+ *
+ * All rights reserved. Any use, copying, modification, distribution and selling
+ * of this software and it's documentation for any purposes without authors' written
+ * permission is hereby prohibited.
+ */
+package mvcs.view {
+  
+  import flash.geom.Point;
+  import flash.utils.setTimeout;
+  
+  import logging.ILogger;
+  import logging.Log;
+  
+  /**
+   *
+   */
+  [Event(name="show", type="pl.hypermedia.projects.mvc.view.ViewEvent")]
+  
+  /**
+   *
+   */
+  [Event(name="hide", type="pl.hypermedia.projects.mvc.view.ViewEvent")]
+  
+  /**
+   *
+   * Abstract application view
+   *
+   * @author piku
+   *
+   */
+  public class AbstractView extends ExtendedMovieClip {
+    
+    /**
+     * 
+     */
+    private static var log:ILogger = Log.getLogger(AbstractView);    
+
+    /**
+     *
+     *
+     */
+    override public function initialize() : void {
+      initializeView();
+      super.initialize();
+    }
+    
+    /**
+     *
+     *
+     */
+    protected function initializeView() : void {
+      ViewLocator.getInstance().add(this, name);
+    }
+    
+    /**
+     *
+     *
+     */
+    override public function dispose() : void {
+      disposeView();
+      super.dispose();
+    }
+    
+    /**
+     *
+     *
+     */
+    protected function disposeView() : void {
+      ViewLocator.getInstance().remove(this);
+    }
+    
+    /**
+     *
+     * Stage center point
+     *
+     * @return Point
+     *
+     */
+    protected function get stageCenter() : Point {
+      return new Point(stage.stageWidth / 2 - width / 2,
+        stage.stageHeight / 2 - height / 2);
+    }
+    
+    /**
+     *
+     * Centers view within stage
+     *
+     */
+    protected function centerView() : void {
+      x = stageCenter.x;
+      y = stageCenter.y;
+    }
+    
+    /**
+     *
+     * Shows view with fade
+     *
+     */
+    public function show(onComplete : Function = null) : void {
+      setTimeout(onShowComplete, 1);
+    }
+    
+    /**
+     *
+     * ShowEffect tween complete listener
+     *
+     */
+    protected function onShowComplete() : void {
+      // notify
+      dispatchEvent(new ViewEvent(ViewEvent.SHOW));
+    }
+    
+    /**
+     *
+     * hides view with fade
+     *
+     */
+    public function hide(onComplete : Function = null) : void {
+      setTimeout(onHideComplete, 1);
+    }
+    
+    /**
+     *
+     * HideEffect tween complete listener
+     *
+     */
+    protected function onHideComplete() : void {
+      // notify
+      dispatchEvent(new ViewEvent(ViewEvent.HIDE));
+    }
+    
+    /**
+     *
+     * @return
+     *
+     */
+    public function get children() : Array {
+      var list : Array = [];
+      
+      for (var i : int = 0; i < numChildren; i++) {
+        list.push(getChildAt(i));
+      }
+      return list;
+    }
+  }
+}

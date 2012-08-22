@@ -1,0 +1,34 @@
+/**
+ *
+ */
+package mvcs.service.listener {
+  import flash.events.IEventDispatcher;
+  
+  import logging.ILogger;
+  import logging.Log;
+  
+  /**
+   *
+   * @author piku
+   *
+   */
+  public class SequentialBusinessListener extends BusinessPushListener {
+    
+    /**
+     *
+     */
+    private static var log : ILogger = Log.getLogger(SequentialBusinessListener);
+    
+    /**
+     *
+     * @param id
+     * @param service
+     * @param eventDispatcher
+     *
+     */
+    /*public function SequentialBusinessListener(id : String = null,
+      service : Object = null, eventDispatcher : IEventDispatcher = null) {
+      super(id, service, eventDispatcher);
+    }*/
+  }
+}

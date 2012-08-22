@@ -1,0 +1,61 @@
+/**
+ * Copyright (C) Piotr Kucharski
+ * email: suspendmode@gmail.com
+ *
+ * All rights reserved. Any use, copying, modification, distribution and selling
+ * of this software and it's documentation for any purposes without authors' written
+ * permission is hereby prohibited.
+ */
+package mvcs.view {
+  import flash.display.DisplayObject;
+  import flash.utils.Dictionary;
+  
+  import lifecycle.LifeCycleContainer;
+  
+  /**
+   *
+   * View Locator pattern, singleton map o application views
+   *
+   * @author piku
+   *
+   */
+  public class ViewLocator extends LifeCycleContainer {
+    
+    /////////////////////////////////////////////////////////////////////////////////
+    
+    /**
+     * singleton
+     * @private
+     */
+    private static var instance : ViewLocator;
+    
+    /**
+     *
+     * @param lock Lock security practice for singleton
+     *
+     */
+    public function ViewLocator(lock : Lock) {
+      if (!instance) {
+        instance = this;
+      }
+    }
+    
+    /**
+     *
+     * Singleton pattern
+     *
+     * @return singleton instance
+     *
+     */
+    public static function getInstance() : ViewLocator {
+      if (!instance) {
+        new ViewLocator(new Lock());
+      }
+      return instance;
+    }
+  }
+}
+
+class Lock {
+  // internal singleton lock
+}

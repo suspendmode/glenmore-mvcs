@@ -1,0 +1,35 @@
+K 25
+svn:wc:ra_dav:version-url
+V 48
+/svn/!svn/ver/63/trunk/src/mvcs/service/delegate
+END
+NetConnectionBusinessDelegate.as
+K 25
+svn:wc:ra_dav:version-url
+V 81
+/svn/!svn/ver/65/trunk/src/mvcs/service/delegate/NetConnectionBusinessDelegate.as
+END
+MockBusinessDelegate.as
+K 25
+svn:wc:ra_dav:version-url
+V 72
+/svn/!svn/ver/63/trunk/src/mvcs/service/delegate/MockBusinessDelegate.as
+END
+SequentialBusinessDelegate.as
+K 25
+svn:wc:ra_dav:version-url
+V 78
+/svn/!svn/ver/63/trunk/src/mvcs/service/delegate/SequentialBusinessDelegate.as
+END
+URLLoaderDelegate.as
+K 25
+svn:wc:ra_dav:version-url
+V 69
+/svn/!svn/ver/63/trunk/src/mvcs/service/delegate/URLLoaderDelegate.as
+END
+BusinessDelegate.as
+K 25
+svn:wc:ra_dav:version-url
+V 68
+/svn/!svn/ver/63/trunk/src/mvcs/service/delegate/BusinessDelegate.as
+END

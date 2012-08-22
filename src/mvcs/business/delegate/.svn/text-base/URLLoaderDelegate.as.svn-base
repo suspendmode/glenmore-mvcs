@@ -1,0 +1,21 @@
+/**
+ *
+ */
+package mvcs.service.delegate {  
+  
+  /**
+   *
+   * @author piku
+   *
+   */
+  public class URLLoaderDelegate extends BusinessDelegate {
+    
+    /**
+     *
+     *
+     */
+    public function URLLoaderDelegate() {
+      super();
+    }
+  }
+}

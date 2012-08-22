@@ -1,0 +1,74 @@
+/**
+ * Copyright (C) Piotr Kucharski
+ * email: suspendmode@gmail.com
+ *
+ * All rights reserved. Any use, copying, modification, distribution and selling
+ * of this software and it's documentation for any purposes without authors' written
+ * permission is hereby prohibited.
+ */
+package mvcs.service.delegate {
+  import flash.net.NetConnection;
+  
+  import logging.ILogger;
+  import logging.Log;
+  import mvcs.service.async.ICompositeResponder;
+  import mvcs.service.async.NetCompositeResponder;
+  
+  /**
+   *
+   * @author piku
+   *
+   */
+  public class NetConnectionBusinessDelegate extends BusinessDelegate {
+    
+    /**
+     *
+     */
+    private static const ENDPOINT_SEPARATOR : String = ".";
+    
+    /**
+     * 
+     */
+    private static var log: ILogger = Log.getLogger(NetConnectionBusinessDelegate);
+    
+    /**
+     *
+     * @param serviceName
+     * @param methodName
+     * @param parameters
+     * @return
+     *
+     */
+    protected function netCall(serviceName : String, methodName : String,
+      ... parameters : Array) : ICompositeResponder {
+      log.info("{0} netCall {1}, {2}, {3}", this, serviceName, methodName,
+        parameters);
+      var responder : ICompositeResponder = new NetCompositeResponder();
+      var args : Array = [serviceName + ENDPOINT_SEPARATOR + methodName,
+        responder];
+      args = args.concat(parameters);
+      return send(args);
+    }
+    
+    /**
+     *
+     * @param parameters
+     * @return
+     *
+     */
+    override public function send(parameters : Object = null) : ICompositeResponder {
+      var callback : Function = netConnection.call;
+      callback.apply(this, parameters as Array);
+      return parameters[1];
+    }
+    
+    /**
+     *
+     * @return
+     *
+     */
+    protected function get netConnection() : NetConnection {
+      return NetConnection(service);
+    }
+  }
+}

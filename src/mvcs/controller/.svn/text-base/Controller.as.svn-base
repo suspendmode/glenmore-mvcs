@@ -1,0 +1,151 @@
+/**
+ * Copyright (C) Piotr Kucharski
+ * email: suspendmode@gmail.com
+ *
+ * All rights reserved. Any use, copying, modification, distribution and selling
+ * of this software and it's documentation for any purposes without authors' written
+ * permission is hereby prohibited.
+ */
+package mvcs.controller {
+  import patterns.structural.composite.CompositeComponentEvent;
+  
+  import lifecycle.LifeCycleContainer;
+  
+  import patterns.behavioral.command.ICommand;
+  
+  import util.CommandUtil;
+  
+  /**
+   *
+   * @author Peter
+   *
+   */
+  public class Controller extends LifeCycleContainer {
+    
+    // ILifeCycle impl
+    
+    /**
+     *
+     *
+     */
+    override public function initialize() : void {
+      super.initialize();
+      initializeCommands();
+    }
+    
+    /**
+     *
+     *
+     */
+    protected function initializeCommands() : void {
+      addEventListener(CompositeComponentEvent.COMPONENT_ADDED, onCommandAdded);
+      addEventListener(CompositeComponentEvent.COMPONENT_REMOVED, onCommandRemoved);
+      
+      for (var name : String in objects) {
+        var object : Class = objects[name];
+        initializeCommand(object, name);
+      }
+    }
+    
+    /**
+     *
+     * @param command
+     * @param name
+     *
+     */
+    private function initializeCommand(command : Class, name : String) : void {
+      addEventListener(name, onCommandEvent);
+    }
+    
+    /**
+     *
+     * @param command
+     * @param name
+     *
+     */
+    private function disposeCommand(command : Class, name : String) : void {
+      removeEventListener(name, onCommandEvent);
+    }
+    
+    /**
+     *
+     * @param event
+     *
+     */
+    private function onCommandAdded(event : CompositeComponentEvent) : void {
+      initializeCommand(event.object as Class, event.name);
+    }
+    
+    
+    /**
+     *
+     * @param event
+     *
+     */
+    private function onCommandRemoved(event : CompositeComponentEvent) : void {
+      disposeCommand(event.object as Class, event.name);
+    }
+    
+    /**
+     *
+     *
+     */
+    override public function dispose() : void {
+      super.dispose();
+      disposeCommands();
+    }
+    
+    /**
+     *
+     *
+     */
+    protected function disposeCommands() : void {
+      removeEventListener(CompositeComponentEvent.COMPONENT_ADDED, onCommandAdded);
+      removeEventListener(CompositeComponentEvent.COMPONENT_REMOVED, onCommandRemoved);
+      
+      for (var name : String in objects) {
+        var object : Class = objects[name];
+        disposeCommand(object, name);
+      }
+    }
+    
+    /**
+     *
+     * @param event
+     *
+     */
+    protected function onCommandEvent(event : ExecuteCommandEvent) : void {
+      var completeFunction: Function = function(data: Object = null): void {
+        event.applyCompleteFunction(data); 
+      }
+        
+      var errorFunction: Function = function(info: Object = null): void {
+        event.applyErrorFunction(info);
+      }
+      executeCommand(event, completeFunction, errorFunction);      
+    }
+    
+    // controller impl
+    
+    
+    /**
+     *
+     * @param event
+     * @param completeListener
+     * @param errorListener
+     * @return
+     *
+     */
+    public function executeCommand(event : ExecuteCommandEvent,
+      completeListener : Function = null, errorListener : Function = null) : ICommand {
+      
+      var name : String = event.type;
+      var generator : Class = objects[name];
+      
+      var command : ICommand = CommandUtil.executeCommand(generator,
+        completeListener, errorListener, event);
+      
+      return command;
+    }
+  }
+}

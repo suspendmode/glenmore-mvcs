@@ -1,0 +1,79 @@
+/**
+ * Copyright (C) Piotr Kucharski
+ * email: suspendmode@gmail.com
+ *
+ * All rights reserved. Any use, copying, modification, distribution and selling
+ * of this software and it's documentation for any purposes without authors' written
+ * permission is hereby prohibited.
+ */
+package patterns.behavioral.command {
+  import flash.utils.setTimeout;
+  
+  import util.CommandUtil;
+  
+  /**
+   *
+   * Sequence command executing commands in serial order
+   *
+   * @author piku
+   *
+   */
+  public class SequenceCommand extends ParallelCommand {
+    
+    /**
+     *
+     *
+     */
+    override protected function executeCommands() : void {
+      executeNextCommand();
+    }
+    
+    /**
+     *
+     * @private
+     *
+     */
+    private function executeNextCommand() : void {
+      if (commands.length) {
+        //create
+        var command : ICommand = commands.shift();
+        var parameters : Object = commandParameters[command];
+        delete commandParameters[command];
+        //execute
+        CommandUtil.executeCommandInstance(command, onCommandExecuted,
+          commandError, parameters);
+      } else {
+        commandComplete();
+      }
+    }
+    
+    /**
+     *
+     * @private
+     *
+     */
+    private function onCommandExecuted() : void {
+      commandExecuted();
+      setTimeout(executeNextCommand, 1);
+    }
+    
+    ///////////////////////////////////////////////////////////////////////
+    
+    /**
+     *
+     * adds commands wrapped to a sequence command
+     *
+     * @param commandGenerators Array array of command generators
+     *
+     */
+    protected function addSequenceCommand(... commandGenerators : Array) : void {
+      var sequenceCommand : SequenceCommand = new SequenceCommand();
+      
+      for each (var commandGenerator : Class in commandGenerators) {
+        sequenceCommand.add(commandGenerator);
+      }
+      commands.push(sequenceCommand);
+      commandParameters[sequenceCommand] = null;
+    }
+  }
+}

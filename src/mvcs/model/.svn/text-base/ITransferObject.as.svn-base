@@ -1,0 +1,28 @@
+/**
+ *
+ */
+package mvcs.model {
+  import flash.utils.IExternalizable;
+  
+  /**
+   *
+   * @author Peter
+   *
+   */
+  public interface ITransferObject extends IExternalizable {
+    
+    /**
+     *
+     * @param value
+     *
+     */
+    function set id(value : String) : void;
+    
+    /**
+     *
+     * @return
+     *
+     */
+    function get id() : String;
+  }
+}
